@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Smart Login</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <section class="sign">
+        <div class="signItem w-md-100">
+            <h1>Smart Login System</h1>
+            <input id="nameId" type="text" placeholder="Enter your name">
+            <input id="emailId" type="email" placeholder="Enter your email">
+            <input id="passId" type="password" placeholder="Enter your password">
+
+            <p id="errorMsg" class="d-none">All input is required</p>
+            <p id="successMsg" class="text-success d-none">succuss</p>
+
+            <button onclick="sign()" id="signUpBtn" class="my-3" type="submit">Sign Up</button>
+            <p>You have an account? <a href="login.html"> SignIn</a></p>
+        </div>
+    </section>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

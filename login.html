@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Smart Login</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <section class="sign" id="loginPage">
+        <div class="signItem ">
+            <h1>Smart Login System</h1>
+            <input id="emailLog" type="email" placeholder="Enter your email">
+            <input id="passLog" type="password" placeholder="Enter your password">
+
+            <p id="logErrorMsg" class="d-none">incorrect email or password</p>
+            <p id="logErrorMsg"></p>
+
+            <button onclick="login()" id="loginBtn" type="submit">Sign Up</button>
+            <p>Don't have an account? <a href="signup.html"> Sign Up</a></p>
+        </div>
+    </section>
+
+    <div id="homePage" class="home d-none">
+
+        <nav
+        class="navbar navbar-expand-sm navbar-light bg-light"
+    >
+        <div class="container p-1" >
+            <h5>SMART LOGIN</h5>
+            <button
+                class="navbar-toggler d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" onclick="showLogin()" aria-current="page"
+                            >Logout
+                            <span class="visually-hidden">(current)</span></a
+                        >
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    
+    <section>
+        
+        
+        <div class="homeItem">
+            <h1 id="welcome"></h1>
+
+        </div>
+    </section>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
