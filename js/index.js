@@ -1,86 +1,126 @@
 let signInBtn = document.getElementById('signUpBtn');
-let nameIn =document.getElementById('nameId');
-let emailIn =document.getElementById('emailId');
+let nameIn = document.getElementById('nameId');
+let emailIn = document.getElementById('emailId');
 let passwordIN = document.getElementById('passId');
-let errorMsg =document.getElementById('errorMsg');
-let successMsg =document.getElementById('successMsg')
-/**********************************************************/ 
-let logInBtn =document.getElementById('loginBtn');
-let emailLog =document.getElementById('emailLog')
-let passLog =document.getElementById('passLog')
-let logErrorMsg =document.getElementById('logErrorMsg');
+let errorMsg = document.getElementById('errorMsg');
+let successMsg = document.getElementById('successMsg')
+let existMsg = document.getElementById('exist');
+/**********************************************************/
+let logInBtn = document.getElementById('loginBtn');
+let emailLog = document.getElementById('emailLog')
+let passLog = document.getElementById('passLog')
+let logErrorMsg = document.getElementById('logErrorMsg');
 let homePage = document.getElementById('homePage')
 let loginPage = document.getElementById('loginPage')
 /**********************************************************/
 let welcome = document.getElementById('welcome')
 
 let person = []
-if (localStorage.length != 0){
+if (localStorage.length != 0) {
     person = JSON.parse(localStorage.getItem('person'));
 }
 
 
 
-function sign(){
-    
-    if (validation(nameIn.value) |validation(emailIn.value) |validation(passwordIN.value) ){
-        let onePerson ={
-            name: nameIn.value,
-            email: emailIn.value,
-            pass: passwordIN.value
+function sign() {
+    var flag = false;
+    if (localStorage.length == 0) {
+        if (validation(nameIn.value) & validation(emailIn.value) & validation(passwordIN.value)) {
+            let onePerson = {
+                name: nameIn.value,
+                email: emailIn.value,
+                pass: passwordIN.value
+            }
+            person.push(onePerson)
+            localStorage.setItem('person', JSON.stringify(person))
+            clearInputs()
+            successMsg.classList.remove('d-none');
+            errorMsg.classList.add('d-none');
+            existMsg.classList.add('d-none');
+        } else {
+            successMsg.classList.add('d-none');
+            errorMsg.classList.remove('d-none');
+            existMsg.classList.add('d-none');
         }
-        person.push(onePerson)    
-        localStorage.setItem('person' ,JSON.stringify(person))
-        clearInputs()
-        successMsg.classList.remove('d-none');
-        errorMsg.classList.add('d-none');
-        
-    }else{
-        successMsg.classList.add('d-none');
-        errorMsg.classList.remove('d-none');
+    } else {
+        console.log(person);
+
+        for (let i = 0; i < person.length; i++) {
+
+            if (person[i].email == emailIn.value) {
+                existMsg.classList.remove('d-none');
+                successMsg.classList.add('d-none');
+                errorMsg.classList.add('d-none');
+                console.log(i)
+                flag = true
+                break;
+            }
+        }
+        if (flag == false) {
+            console.log('hi');
+
+            if (validation(nameIn.value) & validation(emailIn.value) & validation(passwordIN.value)) {
+                let onePerson = {
+                    name: nameIn.value,
+                    email: emailIn.value,
+                    pass: passwordIN.value
+                }
+                person.push(onePerson)
+                localStorage.setItem('person', JSON.stringify(person))
+                clearInputs()
+                successMsg.classList.remove('d-none');
+                errorMsg.classList.add('d-none');
+                existMsg.classList.add('d-none');
+            } else {
+                successMsg.classList.add('d-none');
+                errorMsg.classList.remove('d-none');
+                existMsg.classList.add('d-none');
+            }
+        }
+
     }
-    
 }
 
-function clearInputs(){
-    passwordIN.value =null;
-    nameIn.value=null;
-    emailIn.value=null;
+
+function clearInputs() {
+    passwordIN.value = null;
+    nameIn.value = null;
+    emailIn.value = null;
 }
-function validation(ele){
-    var regex = /^\w{2,}$/
-    if(regex.test(ele)){
+function validation(ele) {
+    var regex = /^.{2,}$/
+    if (regex.test(ele)) {
         return true;
     }
-    else{
+    else {
         return false;
     }
-    
+
 }
 
-function login(){
-    
+function login() {
+
     let user = JSON.parse(localStorage.getItem('person'))
     console.log(user);
     for (let i = 0; i < user.length; i++) {
-        
-        if(emailLog.value === user[i].email & passLog.value === user[i].pass){
-            emailLog.value =null;
-            passLog.value =null;
+
+        if (emailLog.value === user[i].email & passLog.value === user[i].pass) {
+            emailLog.value = null;
+            passLog.value = null;
             homePage.classList.remove('d-none');
             loginPage.classList.add('d-none');
-            welcome.innerHTML =`Welcome ${person[i].name}`
+            welcome.innerHTML = `Welcome ${person[i].name}`
             logErrorMsg.classList.add('d-none')
             break
         }
-        else{
+        else {
             logErrorMsg.classList.remove('d-none')
         }
     }
-    
+
 }
 
-function showLogin(){
+function showLogin() {
     homePage.classList.add('d-none')
     loginPage.classList.remove('d-none')
 }

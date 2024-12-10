@@ -72,6 +72,9 @@
     #errorMsg ,#logErrorMsg{
         color: red;
     }
+    #successMsg{
+        color: rgb(51, 245, 8);
+    }
     
 }
 
